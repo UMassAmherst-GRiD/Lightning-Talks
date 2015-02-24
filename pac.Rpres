@@ -1,0 +1,56 @@
+Principal Component Analysis
+========================================================
+author: Kostis G.
+date: 
+
+What are the principal components?
+==================================
+* Dynamics with the largest variance. 
+* Easy to see in low dimensional datasets, not so much when $d>2$.
+
+Trying to generate an "Aha" moment.
+========================================================
+
+```{r echo=FALSE, fig.align="center"}
+library(ggplot2);
+N = 100;
+width  <- seq(from = 5, to = 10, length=N);
+height <- 5*width  + rnorm(N,1);
+
+dat <- data.frame(width,height)
+  
+oplot <-qplot(width, height)
+print(oplot)
+``` 
+
+
+Trying to generate an "Aha" moment.
+========================================================
+```{r fig.align="center", echo=FALSE}
+print(oplot)
+pca <- prcomp(dat, scale=TRUE)
+summary(pca)
+``` 
+
+Result of PCA
+=========================================================
+
+```{r fig.align="center",echo=FALSE}
+qplot(pca$x[,1],pca$x[,2])
+```
+* The dataset after doing PCA. 
+
+
+Why do it?
+=========================================================
+* Allows us to see the important directions/dynamics of the dataset. 
+* Sometimes suggests variables to drop because of not important interactions with the rest of the set! 
+
+
+
+
+References
+===========
+* A tutorial on Principal Components Analysis, Jonathon Shlens
+* Computing and visualizing PCA in R, R-bloggers.
+* Principal Component Analysis, a how-to manual for R.
